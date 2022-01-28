@@ -1,3 +1,10 @@
+<!--
+    * FILE          : strings.xml
+    * PROJECT       : PROG3150 - Assignment #1 - Trip Planner
+    * FIRST VERSION : 2022-01-27
+    * PROGRAMMER    : N/A
+    * DESCRIPTION   : String definitions.
+-->
 <resources>
-    <string name="app_name">TripPlanner_A1_PROG3150</string>
+    <string name="app_name">SET Trip Planner</string>
 </resources>

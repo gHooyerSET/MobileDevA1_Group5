@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    * FILE          : colors.xml
+    * PROJECT       : PROG3150 - Assignment #1 - Trip Planner
+    * FIRST VERSION : 2022-01-27
+    * PROGRAMMER    : N/A
+    * DESCRIPTION   : Colour definitions.
+-->
 <resources>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
