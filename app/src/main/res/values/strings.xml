@@ -9,6 +9,8 @@
     <string name="app_name">SET Trip Planner</string>
     <string name="originStr">Origin</string>
     <string name="destinationStr">Destination</string>
+    <string name="titleStr">SET Trip Planner</string>
+    <string name="nextScreenButtonStr"><![CDATA[>]]></string>
     <string-array name="placesArray">
         <item>Toronto</item>
         <item>Calgary</item>
