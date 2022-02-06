@@ -7,4 +7,16 @@
 -->
 <resources>
     <string name="app_name">SET Trip Planner</string>
+    <string name="originStr">Origin</string>
+    <string name="destinationStr">Destination</string>
+    <string-array name="placesArray">
+        <item>Toronto</item>
+        <item>Calgary</item>
+        <item>Vancouver</item>
+        <item>New York</item>
+        <item>Los Angeles</item>
+        <item>Miami</item>
+        <item>Seoul</item>
+        <item>Paris</item>
+    </string-array>
 </resources>
