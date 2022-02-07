@@ -18,10 +18,11 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
+    //Create our variables
     private Spinner originSpinner;
     private Spinner destinationSpinner;
     private Button nextScreenButton;
+    private int hideToastHack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         originSpinner = findViewById(R.id.originSpinner);
         destinationSpinner = findViewById(R.id.destinationSpinner);
         nextScreenButton = findViewById(R.id.nextScreenButton);
+        hideToastHack = 0;
         //Set up listeners
         originSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -61,18 +63,34 @@ public class MainActivity extends AppCompatActivity {
 
     public void checkSelections()
     {
-        //If both spinners have the same place selected, disable the nextScreenButton and display an error Toast
-        if(originSpinner.getSelectedItem().toString().equals(destinationSpinner.getSelectedItem().toString()))
+        /*              hideToastHack - What it's doing                 */
+        /* When we create our listeners in onCreate for our spinners,   */
+        /* the event for onItemSelected fires. Since both spinners end  */
+        /* up calling the same function, the easiest way to avoid this  */
+        /* is to create a counter that counts up to 2, and only once it */
+        /* reaches this number can it begin performing it's actual      */
+        /* function, hence the following sequence                       */
+
+        //Check if we've reached our required value
+        if(hideToastHack >= 2)
         {
-            Toast.makeText(this,"Your destination and origin cannot be the same place.",Toast.LENGTH_LONG).show();
-            nextScreenButton.setEnabled(false);
+            //If both spinners have the same place selected, disable the nextScreenButton and display an error Toast
+            if(originSpinner.getSelectedItem().toString().equals(destinationSpinner.getSelectedItem().toString()))
+            {
+                Toast.makeText(this,"Your destination and origin cannot be the same place.",Toast.LENGTH_LONG).show();
+                nextScreenButton.setEnabled(false);
+            }
+            else
+            {
+                //Otherwise, enable the button
+                nextScreenButton.setEnabled(true);
+            }
         }
+        //Otherwise, increment the hideToastHack value
         else
         {
-            //Otherwise, enable the button
-            nextScreenButton.setEnabled(true);
+            hideToastHack++;
         }
-
     }
 
 
