@@ -10,6 +10,7 @@ package com.example.tripplanner_a1_prog3150;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,12 +18,14 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+
 public class MainActivity extends AppCompatActivity {
     //Create our variables
     private Spinner originSpinner;
     private Spinner destinationSpinner;
     private Button nextScreenButton;
     private int hideToastHack;
+    private Trip trip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         destinationSpinner = findViewById(R.id.destinationSpinner);
         nextScreenButton = findViewById(R.id.nextScreenButton);
         hideToastHack = 0;
+        trip = new Trip();
         //Set up listeners
         originSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -58,7 +62,28 @@ public class MainActivity extends AppCompatActivity {
                 nextScreenButton.setEnabled(false);
             }
         });
-
+        nextScreenButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*
+                *   TITLE : Start new activity on button click
+                *   AUTHOR : Denis Kolodin & 'Emmanuel'
+                *   DATE : 2022-02-07
+                *   VERSION : N/A
+                *   AVAILABILITY : https://stackoverflow.com/questions/4186021/how-to-start-new-activity-on-button-click
+                 */
+                Intent nextScreenIntent = new Intent(MainActivity.this,PurchaseTicketActivity.class);
+                /*
+                 *   TITLE : Sending objects between activities
+                 *   AUTHOR : 'Sridhar'
+                 *   DATE : 2017-10-18
+                 *   VERSION : N/A
+                 *   AVAILABILITY : https://stackoverflow.com/questions/2139134/how-to-send-an-object-from-one-android-activity-to-another-using-intents
+                 */
+                nextScreenIntent.putExtra("trip",trip);
+                MainActivity.this.startActivity(nextScreenIntent);
+            }
+        });
     }
 
     public void checkSelections()
@@ -84,6 +109,10 @@ public class MainActivity extends AppCompatActivity {
             {
                 //Otherwise, enable the button
                 nextScreenButton.setEnabled(true);
+                //And set the trip's origin and destination members to the selected values
+                trip.setOrigin(originSpinner.getSelectedItem().toString());
+                trip.setDestination(destinationSpinner.getSelectedItem().toString());
+
             }
         }
         //Otherwise, increment the hideToastHack value
