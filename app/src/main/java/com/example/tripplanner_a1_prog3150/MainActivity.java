@@ -62,27 +62,24 @@ public class MainActivity extends AppCompatActivity {
                 nextScreenButton.setEnabled(false);
             }
         });
-        nextScreenButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                /*
-                *   TITLE : Start new activity on button click
-                *   AUTHOR : Denis Kolodin & 'Emmanuel'
-                *   DATE : 2022-02-07
-                *   VERSION : N/A
-                *   AVAILABILITY : https://stackoverflow.com/questions/4186021/how-to-start-new-activity-on-button-click
-                 */
-                Intent nextScreenIntent = new Intent(MainActivity.this,PurchaseTicketActivity.class);
-                /*
-                 *   TITLE : Sending objects between activities
-                 *   AUTHOR : 'Sridhar'
-                 *   DATE : 2017-10-18
-                 *   VERSION : N/A
-                 *   AVAILABILITY : https://stackoverflow.com/questions/2139134/how-to-send-an-object-from-one-android-activity-to-another-using-intents
-                 */
-                nextScreenIntent.putExtra("trip",trip);
-                MainActivity.this.startActivity(nextScreenIntent);
-            }
+        nextScreenButton.setOnClickListener(view -> {
+            /*
+            *   TITLE : Start new activity on button click
+            *   AUTHOR : Denis Kolodin & 'Emmanuel'
+            *   DATE : 2022-02-07
+            *   VERSION : N/A
+            *   AVAILABILITY : https://stackoverflow.com/questions/4186021/how-to-start-new-activity-on-button-click
+             */
+            Intent nextScreenIntent = new Intent(MainActivity.this,PurchaseTicketActivity.class);
+            /*
+             *   TITLE : Sending objects between activities
+             *   AUTHOR : 'Sridhar'
+             *   DATE : 2017-10-18
+             *   VERSION : N/A
+             *   AVAILABILITY : https://stackoverflow.com/questions/2139134/how-to-send-an-object-from-one-android-activity-to-another-using-intents
+             */
+            nextScreenIntent.putExtra("trip",trip);
+            MainActivity.this.startActivity(nextScreenIntent);
         });
     }
 
