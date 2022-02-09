@@ -2,7 +2,7 @@
 * FILE          : MainActivity.java
 * PROJECT       : PROG3150 - Assignment #1 - Trip Planner
 * FIRST VERSION : 2022-01-27
-* PROGRAMMER    :
+* PROGRAMMER    : Gerritt Hooyer
 * DESCRIPTION   : The code behind the Trip Planner app.
 */
 
