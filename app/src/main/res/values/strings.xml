@@ -17,6 +17,11 @@
     <string name="totalTicketPriceTextStr">Total Ticket Price</string>
     <string name="nightsStr">Number of Nights</string>
     <string name="hotelCostTextStr">Hotel Cost</string>
+    <string name="reviewTripStr">Review Trip</string>
+    <string name="hotelCostPerNightTextStr">Hotel Cost / Night</string>
+    <string name="totalCostTextStr">Total Trip Cost</string>
+    <string name="orderTripButtonStr">Let\'s Go!</string>
+    <string name="cancelTripOrderButtonStr">Cancel Order</string>
     <string-array name="placesArray">
         <item>Toronto</item>
         <item>Calgary</item>
