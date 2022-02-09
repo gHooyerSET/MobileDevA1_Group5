@@ -7,6 +7,46 @@
     tools:context=".PurchaseTicketActivity">
 
     <TextView
+        android:id="@+id/totalTicketPriceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/totTickPriceTextTextView"
+        app:layout_constraintTop_toTopOf="@+id/totTickPriceTextTextView" />
+
+    <TextView
+        android:id="@+id/indTicketPriceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/indTickPriceTextTextView"
+        app:layout_constraintTop_toTopOf="@+id/indTickPriceTextTextView" />
+
+    <TextView
+        android:id="@+id/totTickPriceTextTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/totalTicketPriceTextStr"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/indTickPriceTextTextView"
+        app:layout_constraintTop_toBottomOf="@+id/indTickPriceTextTextView" />
+
+    <TextView
+        android:id="@+id/numpeopleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/peopleTextView"
+        app:layout_constraintTop_toTopOf="@+id/peopleTextView" />
+
+    <TextView
         android:id="@+id/origTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,4 +86,72 @@
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/destTextView"
         app:layout_constraintTop_toTopOf="@+id/destTextView" />
+
+    <SeekBar
+        android:id="@+id/peopleSeekBar"
+        android:layout_width="300dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="@+id/peopleTextView"
+        app:layout_constraintTop_toBottomOf="@+id/peopleTextView" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="409dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/destTextView" />
+
+    <TextView
+        android:id="@+id/peopleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/peopleStr"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/destTextView"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/switchStr"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/peopleSeekBar"
+        app:layout_constraintTop_toBottomOf="@+id/peopleSeekBar" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="409dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="32dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch1" />
+
+    <TextView
+        android:id="@+id/indTickPriceTextTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/indTicketPriceTextStr"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/switch1"
+        app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+    <Button
+        android:id="@+id/nextScreenButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:text="@string/nextScreenButtonStr"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/totTickPriceTextTextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

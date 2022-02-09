@@ -11,6 +11,10 @@
     <string name="destinationStr">Destination</string>
     <string name="titleStr">SET Trip Planner</string>
     <string name="nextScreenButtonStr"><![CDATA[>]]></string>
+    <string name="peopleStr"># of Trip Goers</string>
+    <string name="switchStr">First Class</string>
+    <string name="indTicketPriceTextStr">Individual Ticket Price</string>
+    <string name="totalTicketPriceTextStr">Total Ticket Price</string>
     <string-array name="placesArray">
         <item>Toronto</item>
         <item>Calgary</item>
