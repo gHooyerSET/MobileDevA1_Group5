@@ -15,6 +15,8 @@
     <string name="switchStr">First Class</string>
     <string name="indTicketPriceTextStr">Individual Ticket Price</string>
     <string name="totalTicketPriceTextStr">Total Ticket Price</string>
+    <string name="nightsStr">Number of Nights</string>
+    <string name="hotelCostTextStr">Hotel Cost</string>
     <string-array name="placesArray">
         <item>Toronto</item>
         <item>Calgary</item>
@@ -24,5 +26,10 @@
         <item>Miami</item>
         <item>Seoul</item>
         <item>Paris</item>
+    </string-array>
+    <string-array name="hotelArray">
+        <item>Hotel A - $100 / Night</item>
+        <item>Hotel B - $250 / Night</item>
+        <item>Hotel C - $500 / Night</item>
     </string-array>
 </resources>
