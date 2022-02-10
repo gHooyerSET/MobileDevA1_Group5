@@ -27,6 +27,15 @@
         app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
     <TextView
+        android:id="@+id/costNumberTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hotelCostTextTextView" />
+
+    <TextView
         android:id="@+id/numNightsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -80,10 +89,20 @@
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:max="14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nightsTextView" />
+
+    <TextView
+        android:id="@+id/nightNumberTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
     <Button
         android:id="@+id/nextScreenButton3"

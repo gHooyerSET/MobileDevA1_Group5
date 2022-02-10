@@ -32,4 +32,9 @@
         <item>Hotel B - $250 / Night</item>
         <item>Hotel C - $500 / Night</item>
     </string-array>
+    <string-array name="hotelArrayValues">
+        <item>100</item>
+        <item>250</item>
+        <item>500</item>
+    </string-array>
 </resources>
