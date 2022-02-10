@@ -31,6 +31,7 @@ public class PurchaseHotelRoomActivity extends AppCompatActivity {
     private float totalCost;
     private String[] hotelCosts;
     private int spinnerPosition;
+    private Trip trip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class PurchaseHotelRoomActivity extends AppCompatActivity {
         nightNumberTextView = findViewById(R.id.nightNumberTextView);
         costNumberTextView = findViewById(R.id.costNumberTextView);
         nightNumberTextView.setText(hotelNightBar.getProgress() + "/" + hotelNightBar.getMax());
+        trip = (Trip)getIntent().getSerializableExtra("trip");
         //This array contains the associated values to the hotel selection spinner
         hotelCosts = getResources().getStringArray(R.array.hotelArrayValues);
 
@@ -57,7 +59,7 @@ public class PurchaseHotelRoomActivity extends AppCompatActivity {
                 spinnerPosition = hotelSpinner.getSelectedItemPosition();
                 nightCost = Float.valueOf(hotelCosts[spinnerPosition]);
                 totalCost = nightCount * nightCost;
-                costNumberTextView.setText("$" + totalCost);
+                costNumberTextView.setText("$" + String.format("%.02f", totalCost));
             }
 
             @Override
@@ -114,9 +116,9 @@ public class PurchaseHotelRoomActivity extends AppCompatActivity {
              *   VERSION : N/A
              *   AVAILABILITY : https://stackoverflow.com/questions/2139134/how-to-send-an-object-from-one-android-activity-to-another-using-intents
              */
-            nextScreenIntent.putExtra("totalCost", totalCost);
-            nextScreenIntent.putExtra("nightCount", nightCount);
-            nextScreenIntent.putExtra("nightCost", nightCost);
+            trip.setHotelCost(nightCost);
+            trip.setNights(nightCount);
+            nextScreenIntent.putExtra("trip",trip);
             PurchaseHotelRoomActivity.this.startActivity(nextScreenIntent);
         });
 

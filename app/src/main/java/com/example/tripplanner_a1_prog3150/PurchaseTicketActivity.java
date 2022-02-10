@@ -71,13 +71,13 @@ public class PurchaseTicketActivity extends AppCompatActivity {
                 if(b)
                 {
                     ticketPrice = 200.00F;
-                    individualPrice.setText("$"+ticketPrice);
+                    individualPrice.setText("$"+String.format("%.02f",ticketPrice));
                     CalculateTotal(progress, ticketPrice);
                 }
                 else
                 {
                     ticketPrice = 100.00F;
-                    individualPrice.setText("$"+ticketPrice);
+                    individualPrice.setText("$"+String.format("%.02f",ticketPrice));
                     CalculateTotal(progress, ticketPrice);
                 }
             }
@@ -134,9 +134,9 @@ public class PurchaseTicketActivity extends AppCompatActivity {
              *   VERSION : N/A
              *   AVAILABILITY : https://stackoverflow.com/questions/2139134/how-to-send-an-object-from-one-android-activity-to-another-using-intents
              */
-            nextScreenIntent.putExtra("ticketPrice", ticketPrice);
-            nextScreenIntent.putExtra("totalTicketPrice", totalTicketPrice);
-            nextScreenIntent.putExtra("numPeople", progress);
+            trip.setTripGoers(progress);
+            trip.setTicketPrice(ticketPrice);
+            nextScreenIntent.putExtra("trip", trip);
             PurchaseTicketActivity.this.startActivity(nextScreenIntent);
         });
     }
@@ -145,7 +145,7 @@ public class PurchaseTicketActivity extends AppCompatActivity {
     {
         totalPrice = (TextView) findViewById(R.id.totalTicketPriceTextView);
         totalTicketPrice = numPeople*indPrice;
-        totalPrice.setText("$"+totalTicketPrice);
+        totalPrice.setText("$"+String.format("%.02f",totalTicketPrice));
     }
 
 }
