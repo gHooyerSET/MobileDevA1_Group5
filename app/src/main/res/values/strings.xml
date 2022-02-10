@@ -38,8 +38,8 @@
         <item>Hotel C - $500 / Night</item>
     </string-array>
     <string-array name="hotelArrayValues">
-        <item>100</item>
-        <item>250</item>
-        <item>500</item>
+        <item>100.00</item>
+        <item>250.00</item>
+        <item>500.00</item>
     </string-array>
 </resources>

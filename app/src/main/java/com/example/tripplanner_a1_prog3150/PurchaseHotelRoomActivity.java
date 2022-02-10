@@ -9,6 +9,7 @@ package com.example.tripplanner_a1_prog3150;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,8 +27,8 @@ public class PurchaseHotelRoomActivity extends AppCompatActivity {
     private TextView nightNumberTextView;
     private TextView costNumberTextView;
     private int nightCount;
-    private int nightCost;
-    private int totalCost;
+    private float nightCost;
+    private float totalCost;
     private String[] hotelCosts;
     private int spinnerPosition;
 
@@ -54,7 +55,7 @@ public class PurchaseHotelRoomActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 spinnerPosition = hotelSpinner.getSelectedItemPosition();
-                nightCost = Integer.valueOf(hotelCosts[spinnerPosition]);
+                nightCost = Float.valueOf(hotelCosts[spinnerPosition]);
                 totalCost = nightCount * nightCost;
                 costNumberTextView.setText("$" + totalCost);
             }
@@ -91,8 +92,32 @@ public class PurchaseHotelRoomActivity extends AppCompatActivity {
                 nightNumberTextView.setText(nightCount + "/" + seekBar.getMax());
                 //Here, we are going to calculate the total cost, then change the text of the cost
                 totalCost = nightCount * nightCost;
-                costNumberTextView.setText("$" + totalCost);
+                //https://stackoverflow.com/questions/2538787/how-to-print-a-float-with-2-decimal-places-in-java
+                costNumberTextView.setText("$" + String.format("%.02f", totalCost));
             }
+        });
+
+        //Button Listener
+        nextScreenButton.setOnClickListener(view -> {
+            /*
+             *   TITLE : Start new activity on button click
+             *   AUTHOR : Denis Kolodin & 'Emmanuel'
+             *   DATE : 2022-02-07
+             *   VERSION : N/A
+             *   AVAILABILITY : https://stackoverflow.com/questions/4186021/how-to-start-new-activity-on-button-click
+             */
+            Intent nextScreenIntent = new Intent(PurchaseHotelRoomActivity.this,ReviewTripActivity.class);
+            /*
+             *   TITLE : Sending objects between activities
+             *   AUTHOR : 'Sridhar'
+             *   DATE : 2017-10-18
+             *   VERSION : N/A
+             *   AVAILABILITY : https://stackoverflow.com/questions/2139134/how-to-send-an-object-from-one-android-activity-to-another-using-intents
+             */
+            nextScreenIntent.putExtra("totalCost", totalCost);
+            nextScreenIntent.putExtra("nightCount", nightCount);
+            nextScreenIntent.putExtra("nightCost", nightCost);
+            PurchaseHotelRoomActivity.this.startActivity(nextScreenIntent);
         });
 
 
