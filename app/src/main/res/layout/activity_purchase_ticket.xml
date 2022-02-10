@@ -37,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/indTickPriceTextTextView" />
 
     <TextView
-        android:id="@+id/numpeopleTextView"
+        android:id="@+id/numPeopleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"

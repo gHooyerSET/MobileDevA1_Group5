@@ -20,6 +20,8 @@ public class Trip implements Serializable {
     private String destination;
     private String origin;
     private float ticketPrice;
+    private float totalTicketPrice;
+    private int numPeople;
 
     //Getters
     public String getDestination()
@@ -36,6 +38,10 @@ public class Trip implements Serializable {
     {
         return ticketPrice;
     }
+
+    public float getTotalTicketPrice() { return totalTicketPrice; }
+
+    public int getNumPeople() { return numPeople; }
 
     //Setters
     public void setDestination(String destination)
@@ -57,6 +63,23 @@ public class Trip implements Serializable {
         }
     }
 
+    public void setTotalTicketPrice(float totalTicketPrice)
+    {
+        //Do not alter total ticket price if trying to set it to a value < 0
+        if(totalTicketPrice >= 0)
+        {
+            this.totalTicketPrice = totalTicketPrice;
+        }
+    }
+
+    public void setNumPeople(int numPeople)
+    {
+        //Do not alter number of people if trying to set it to a value < 0
+        if(numPeople >= 0)
+        {
+            this.numPeople = numPeople;
+        }
+    }
 
 
 }
