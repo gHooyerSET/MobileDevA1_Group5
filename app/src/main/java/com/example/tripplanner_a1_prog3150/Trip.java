@@ -27,6 +27,12 @@ public class Trip implements Serializable {
     private float totalHotelCost;
     private float totalCost;
 
+    /*
+     * FUNCTION : Trip - CONSTRUCTOR
+     * DESCRIPTION : Sets the trip object to have sensible defaults.
+     * PARAMETERS : N/A
+     * RETURNS :  Trip - an instance of a Trip object
+     */
     public Trip()
     {
         destination = "";
@@ -123,18 +129,36 @@ public class Trip implements Serializable {
     }
 
     //Total updaters
+    /*
+     * FUNCTION : updateTotalTicketCost
+     * DESCRIPTION : Updates the total ticket cost of the trip
+     * PARAMETERS : N/A
+     * RETURNS :  N/A
+     */
     public void updateTotalTicketCost()
     {
         totalTicketCost = ticketPrice * tripGoers;
         updateTotalCost();
     }
 
+    /*
+     * FUNCTION : updateTotalHotelCost
+     * DESCRIPTION : Updates the total cost of the hotel
+     * PARAMETERS : N/A
+     * RETURNS :  N/A
+     */
     public void updateTotalHotelCost()
     {
         totalHotelCost = hotelCost * nights;
         updateTotalCost();
     }
 
+    /*
+    * FUNCTION : updateTotalCost
+    * DESCRIPTION : Updates the total cost of the trip
+    * PARAMETERS : N/A
+    * RETURNS :  N/A
+     */
     public void updateTotalCost()
     {
         totalCost = totalHotelCost + totalTicketCost;

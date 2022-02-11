@@ -22,6 +22,8 @@
     <string name="totalCostTextStr">Total Trip Cost</string>
     <string name="orderTripButtonStr">Let\'s Go!</string>
     <string name="cancelTripOrderButtonStr">Cancel Order</string>
+    <string name="confirmationStr">Thank you for planning your trip with us!</string>
+    <string name="nextTripButtonStr">Plan Another Trip!</string>
     <string-array name="placesArray">
         <item>Toronto</item>
         <item>Calgary</item>

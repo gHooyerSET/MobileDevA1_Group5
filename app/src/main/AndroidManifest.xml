@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TripPlanner_A1_PROG3150">
         <activity
+            android:name=".ConfirmationActivity"
+            android:exported="false" />
+        <activity
             android:name=".ReviewTripActivity"
             android:exported="false" />
         <activity
