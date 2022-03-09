@@ -19,7 +19,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class PurchaseHotelRoomActivity extends AppCompatActivity {
+public class PurchaseHotelRoomActivity extends MenuActivity {
     //Create our variables
     private Spinner hotelSpinner;
     private SeekBar hotelNightBar;
@@ -109,6 +109,7 @@ public class PurchaseHotelRoomActivity extends AppCompatActivity {
              *   AVAILABILITY : https://stackoverflow.com/questions/4186021/how-to-start-new-activity-on-button-click
              */
             Intent nextScreenIntent = new Intent(PurchaseHotelRoomActivity.this,ReviewTripActivity.class);
+            Intent menuIntent = new Intent(PurchaseHotelRoomActivity.this,MenuActivity.class);
             /*
              *   TITLE : Sending objects between activities
              *   AUTHOR : 'Sridhar'
@@ -118,7 +119,9 @@ public class PurchaseHotelRoomActivity extends AppCompatActivity {
              */
             trip.setHotelCost(nightCost);
             trip.setNights(nightCount);
+            MenuData.enableReview = true;
             nextScreenIntent.putExtra("trip",trip);
+            menuIntent.putExtra("trip",trip);
             PurchaseHotelRoomActivity.this.startActivity(nextScreenIntent);
         });
 

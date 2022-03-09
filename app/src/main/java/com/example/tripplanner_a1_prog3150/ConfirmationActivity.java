@@ -14,7 +14,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class ConfirmationActivity extends AppCompatActivity {
+public class ConfirmationActivity extends MenuActivity {
 
     //Create variables
     private TextView confirmationOriginTextView;
