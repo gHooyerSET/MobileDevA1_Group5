@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private Button nextScreenButton;
     private int hideToastHack;
     private Trip trip;
+    private TextView quizTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         originSpinner = findViewById(R.id.originSpinner);
         destinationSpinner = findViewById(R.id.destinationSpinner);
         nextScreenButton = findViewById(R.id.nextScreenButton);
+        quizTextView = findViewById(R.id.quizTextView);
         hideToastHack = 0;
         trip = new Trip();
         //Set up listeners
@@ -81,6 +84,13 @@ public class MainActivity extends AppCompatActivity {
             nextScreenIntent.putExtra("trip",trip);
             MainActivity.this.startActivity(nextScreenIntent);
         });
+
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
+        quizTextView.setText(position + 1);
     }
 
     public void checkSelections()
