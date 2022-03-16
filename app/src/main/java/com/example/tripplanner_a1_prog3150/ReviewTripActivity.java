@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class ReviewTripActivity extends AppCompatActivity {
+public class ReviewTripActivity extends MenuActivity {
 
     private Trip trip;
     private Button cancelButton;

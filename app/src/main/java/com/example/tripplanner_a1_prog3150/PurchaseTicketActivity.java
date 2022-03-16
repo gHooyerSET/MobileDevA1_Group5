@@ -17,7 +17,7 @@ import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
-public class PurchaseTicketActivity extends AppCompatActivity {
+public class PurchaseTicketActivity extends MenuActivity {
 
     private Trip trip;
     private TextView destinationSelectionTextView;
@@ -127,6 +127,7 @@ public class PurchaseTicketActivity extends AppCompatActivity {
              *   AVAILABILITY : https://stackoverflow.com/questions/4186021/how-to-start-new-activity-on-button-click
              */
             Intent nextScreenIntent = new Intent(PurchaseTicketActivity.this,PurchaseHotelRoomActivity.class);
+            Intent menuIntent = new Intent(PurchaseTicketActivity.this,MenuActivity.class);
             /*
              *   TITLE : Sending objects between activities
              *   AUTHOR : 'Sridhar'
@@ -136,7 +137,9 @@ public class PurchaseTicketActivity extends AppCompatActivity {
              */
             trip.setTripGoers(progress);
             trip.setTicketPrice(ticketPrice);
+            MenuData.enableHotel = true;
             nextScreenIntent.putExtra("trip", trip);
+            menuIntent.putExtra("trip",trip);
             PurchaseTicketActivity.this.startActivity(nextScreenIntent);
         });
     }

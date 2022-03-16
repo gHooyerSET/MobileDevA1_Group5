@@ -8,6 +8,8 @@
 
 package com.example.tripplanner_a1_prog3150;
 
+import android.app.Application;
+
 import java.io.Serializable;
 
 /*
@@ -16,7 +18,7 @@ import java.io.Serializable;
 *           basic methods for manipulation of that data.
  */
 public class Trip implements Serializable {
-
+    // Trip Data
     private String destination;
     private String origin;
     private float ticketPrice;
@@ -52,40 +54,31 @@ public class Trip implements Serializable {
     {
         return destination;
     }
-
     public String getOrigin()
     {
         return origin;
     }
-
     public float getTicketPrice()
     {
         return ticketPrice;
     }
-
     public int getTripGoers() { return tripGoers; }
-
     public float getHotelCost() { return hotelCost; }
-
     public int getNights() { return nights; }
-
     public float getTotalHotelCost() { return totalHotelCost; }
-
     public float getTotalTicketCost() { return totalTicketCost; }
-
     public float getTotalCost() { return totalCost; }
+
 
     //Setters
     public void setDestination(String destination)
     {
         this.destination = destination;
     }
-
     public void setOrigin(String origin)
     {
         this.origin = origin;
     }
-
     public void setTicketPrice(float ticketPrice)
     {
         //Do not alter ticket price if trying to set it to a value < 0
@@ -96,7 +89,6 @@ public class Trip implements Serializable {
             updateTotalTicketCost();
         }
     }
-
     public void setTripGoers(int tripGoers)
     {
         if (tripGoers >= 1 && tripGoers <= 4)
@@ -106,7 +98,6 @@ public class Trip implements Serializable {
             updateTotalTicketCost();
         }
     }
-
     public void setHotelCost(float hotelCost)
     {
         if(hotelCost >= 0)
@@ -116,7 +107,6 @@ public class Trip implements Serializable {
             updateTotalHotelCost();
         }
     }
-
     public void setNights(int nights)
     {
         //Do not alter the # of nights
@@ -127,7 +117,6 @@ public class Trip implements Serializable {
             updateTotalHotelCost();
         }
     }
-
     //Total updaters
     /*
      * FUNCTION : updateTotalTicketCost
@@ -140,7 +129,6 @@ public class Trip implements Serializable {
         totalTicketCost = ticketPrice * tripGoers;
         updateTotalCost();
     }
-
     /*
      * FUNCTION : updateTotalHotelCost
      * DESCRIPTION : Updates the total cost of the hotel
@@ -152,7 +140,6 @@ public class Trip implements Serializable {
         totalHotelCost = hotelCost * nights;
         updateTotalCost();
     }
-
     /*
     * FUNCTION : updateTotalCost
     * DESCRIPTION : Updates the total cost of the trip
@@ -163,6 +150,4 @@ public class Trip implements Serializable {
     {
         totalCost = totalHotelCost + totalTicketCost;
     }
-
-
 }

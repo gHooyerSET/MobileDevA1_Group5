@@ -8,10 +8,14 @@
 
 package com.example.tripplanner_a1_prog3150;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -20,7 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends MenuActivity {
     //Create our variables
     private Spinner originSpinner;
     private Spinner destinationSpinner;
@@ -74,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
             *   AVAILABILITY : https://stackoverflow.com/questions/4186021/how-to-start-new-activity-on-button-click
              */
             Intent nextScreenIntent = new Intent(MainActivity.this,PurchaseTicketActivity.class);
+            Intent menuIntent = new Intent(MainActivity.this,MenuActivity.class);
             /*
              *   TITLE : Sending objects between activities
              *   AUTHOR : 'Sridhar'
@@ -82,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
              *   AVAILABILITY : https://stackoverflow.com/questions/2139134/how-to-send-an-object-from-one-android-activity-to-another-using-intents
              */
             nextScreenIntent.putExtra("trip",trip);
+            menuIntent.putExtra("trip",trip);
             MainActivity.this.startActivity(nextScreenIntent);
         });
 
@@ -114,8 +120,9 @@ public class MainActivity extends AppCompatActivity {
             }
             else
             {
-                //Otherwise, enable the button
+                //Otherwise, enable the button and menu item
                 nextScreenButton.setEnabled(true);
+                MenuData.enableFlight = true;
                 //And set the trip's origin and destination members to the selected values
                 trip.setOrigin(originSpinner.getSelectedItem().toString());
                 trip.setDestination(destinationSpinner.getSelectedItem().toString());
