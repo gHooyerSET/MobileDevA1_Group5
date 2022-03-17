@@ -28,6 +28,11 @@
     <string name="flight">Flight</string>
     <string name="hotel">Hotel</string>
     <string name="checkout">Checkout</string>
+    <string name="amenities">Amenities</string>
+    <string name="premium_bedding">Premium Bedding</string>
+    <string name="champagne_bar">Champagne Bar</string>
+    <string name="poseidon_jacuzzi">Poseidon Jacuzzi</string>
+    <string name="available_premium_amenities">Add Premium Amenities</string>
     <string-array name="placesArray">
         <item>Toronto</item>
         <item>Calgary</item>

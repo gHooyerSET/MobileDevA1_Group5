@@ -19,6 +19,7 @@ public class ReviewTripActivity extends MenuActivity {
     private TextView totalTicketCostTextView;
     private TextView hotelCostTextView;
     private TextView hotelNightsTextView;
+    private TextView amenitiesCostTextView;
     private TextView totalHotelCostTextView;
     private TextView totalTripCostTextView;
 
@@ -38,6 +39,7 @@ public class ReviewTripActivity extends MenuActivity {
         totalTicketCostTextView = findViewById(R.id.reviewTotalTicketPriceTextView);
         hotelCostTextView = findViewById(R.id.reviewHotelCostNightTextView);
         hotelNightsTextView = findViewById(R.id.reviewNumNightsTextView);
+        amenitiesCostTextView = findViewById(R.id.reviewAmenitiesCostTextView);
         totalHotelCostTextView = findViewById(R.id.reviewHotelCostTextView);
         totalTripCostTextView = findViewById(R.id.reviewTotalCostTextView);
 
@@ -48,6 +50,7 @@ public class ReviewTripActivity extends MenuActivity {
         totalTicketCostTextView.setText("$" + String.format("%.02f",trip.getTotalTicketCost()));
         hotelCostTextView.setText("$" + String.format("%.02f",trip.getHotelCost()));
         hotelNightsTextView.setText(String.format("%d",trip.getNights()));
+        amenitiesCostTextView.setText("$" + String.format("%.02f",trip.getAmenitiesCost()));
         totalHotelCostTextView.setText("$" + String.format("%.02f",trip.getTotalHotelCost()));
         totalTripCostTextView.setText("$" + String.format("%.02f",trip.getTotalCost()));
 

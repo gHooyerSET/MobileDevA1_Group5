@@ -7,28 +7,20 @@
     tools:context=".ReviewTripActivity">
 
     <TextView
-        android:id="@+id/reviewHotelCostTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toTopOf="@+id/textView9" />
-
-    <TextView
         android:id="@+id/reviewNumNightsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toTopOf="@+id/textView7" />
+        app:layout_constraintStart_toEndOf="@+id/numberOfNightsTextView"
+        app:layout_constraintTop_toTopOf="@+id/numberOfNightsTextView" />
 
     <TextView
         android:id="@+id/reviewHotelCostNightTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toTopOf="@+id/textView6" />
+        app:layout_constraintStart_toEndOf="@+id/hotelCostPerNightTextView"
+        app:layout_constraintTop_toTopOf="@+id/hotelCostPerNightTextView" />
 
     <TextView
         android:id="@+id/reviewTotalTicketPriceTextView"
@@ -78,32 +70,60 @@
         android:id="@+id/divider6"
         android:layout_width="409dp"
         android:layout_height="1dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/hotelCostTextView" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/hotelCostTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="@string/hotelCostTextStr"
-        app:layout_constraintStart_toStartOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/amenitiesCostTextView" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/reviewHotelCostTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="482dp"
+        app:layout_constraintStart_toEndOf="@+id/hotelCostTextView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/amenitiesCostTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="Amenities Cost"
+        app:layout_constraintStart_toStartOf="@+id/numberOfNightsTextView"
+        app:layout_constraintTop_toBottomOf="@+id/numberOfNightsTextView" />
+
+    <TextView
+        android:id="@+id/reviewAmenitiesCostTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="446dp"
+        app:layout_constraintStart_toEndOf="@+id/amenitiesCostTextView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/numberOfNightsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="@string/nightsStr"
         app:layout_constraintStart_toStartOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/hotelCostPerNightTextView" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/hotelCostPerNightTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -202,42 +222,44 @@
         app:layout_constraintStart_toStartOf="@+id/reviewDestinationTextTextView"
         app:layout_constraintTop_toBottomOf="@+id/divider4" />
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/orderTripButton"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/totalCostTextStr"
-        app:layout_constraintStart_toStartOf="@+id/textView9"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="71dp"
+        android:text="@string/orderTripButtonStr"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/cancelTripOrderButton"
         app:layout_constraintTop_toBottomOf="@+id/divider6" />
 
     <TextView
         android:id="@+id/reviewTotalCostTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toEndOf="@+id/textView10"
-        app:layout_constraintTop_toTopOf="@+id/textView10" />
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="544dp"
+        app:layout_constraintStart_toEndOf="@+id/totalCostTextView"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/orderTripButton"
-        android:layout_width="150dp"
+    <TextView
+        android:id="@+id/totalCostTextView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:text="@string/orderTripButtonStr"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.025"
-        app:layout_constraintStart_toEndOf="@+id/cancelTripOrderButton"
-        app:layout_constraintTop_toTopOf="@+id/cancelTripOrderButton" />
+        android:layout_marginTop="20dp"
+        android:text="@string/totalCostTextStr"
+        app:layout_constraintStart_toStartOf="@+id/hotelCostTextView"
+        app:layout_constraintTop_toBottomOf="@+id/divider6" />
 
     <Button
         android:id="@+id/cancelTripOrderButton"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="31dp"
         android:text="@string/cancelTripOrderButtonStr"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintTop_toBottomOf="@+id/totalCostTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

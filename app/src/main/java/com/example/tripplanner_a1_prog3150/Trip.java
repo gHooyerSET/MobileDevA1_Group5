@@ -27,7 +27,9 @@ public class Trip implements Serializable {
     private float hotelCost;
     private int nights;
     private float totalHotelCost;
+    private float amenitiesCost;
     private float totalCost;
+
 
     /*
      * FUNCTION : Trip - CONSTRUCTOR
@@ -45,6 +47,7 @@ public class Trip implements Serializable {
         nights = 0;
         totalTicketCost = 0;
         totalHotelCost = 0;
+        amenitiesCost = 0;
         totalCost = 0;
     }
 
@@ -65,6 +68,7 @@ public class Trip implements Serializable {
     public int getTripGoers() { return tripGoers; }
     public float getHotelCost() { return hotelCost; }
     public int getNights() { return nights; }
+    public float getAmenitiesCost() {return amenitiesCost; }
     public float getTotalHotelCost() { return totalHotelCost; }
     public float getTotalTicketCost() { return totalTicketCost; }
     public float getTotalCost() { return totalCost; }
@@ -79,6 +83,7 @@ public class Trip implements Serializable {
     {
         this.origin = origin;
     }
+    public void setAmenitiesCost(float amenitiesCost) {this.amenitiesCost = amenitiesCost; }
     public void setTicketPrice(float ticketPrice)
     {
         //Do not alter ticket price if trying to set it to a value < 0
@@ -129,15 +134,17 @@ public class Trip implements Serializable {
         totalTicketCost = ticketPrice * tripGoers;
         updateTotalCost();
     }
+
+    //amenitiesCost
     /*
-     * FUNCTION : updateTotalHotelCost
+     * FUNCTION : updateTotalHotelCost()
      * DESCRIPTION : Updates the total cost of the hotel
      * PARAMETERS : N/A
      * RETURNS :  N/A
      */
     public void updateTotalHotelCost()
     {
-        totalHotelCost = hotelCost * nights;
+        totalHotelCost = (hotelCost * nights) + amenitiesCost;
         updateTotalCost();
     }
     /*
