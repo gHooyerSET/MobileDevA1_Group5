@@ -94,11 +94,6 @@ public class MainActivity extends MenuActivity {
 
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
-        quizTextView.setText(position + 1);
-    }
-
     public void checkSelections()
     {
         /*              hideToastHack - What it's doing                 */
