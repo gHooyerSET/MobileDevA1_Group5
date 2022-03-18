@@ -80,6 +80,11 @@ public class ConfirmationActivity extends MenuActivity {
         });
     }
 
+    /*  -- Class Header Comment
+    Name    :    ASyncFileWriter
+    Purpose :    Creates a receipt text file (in a more fully-featured app, this may be uploaded to a server)
+                 asynchronously
+    */
     public class ASyncFileWriter extends AsyncTask<Trip,Void,Trip>
     {
         private String filename;
@@ -137,7 +142,10 @@ public class ConfirmationActivity extends MenuActivity {
             Toast.makeText(ConfirmationActivity.this,"File created! " + filename,Toast.LENGTH_SHORT).show();
         }
     }
-
+    /*  -- Class Header Comment
+    Name    :    ASyncDatabaseCreator
+    Purpose :    Stores the trip information into a database, asynchronously
+    */
     public class ASyncDatabaseCreator extends AsyncTask<Trip,Void,Trip>
     {
         @Override
@@ -166,6 +174,7 @@ public class ConfirmationActivity extends MenuActivity {
         @Override
         protected void onPostExecute(Trip trip) {
             Toast.makeText(ConfirmationActivity.this,"Trip inserted!",Toast.LENGTH_SHORT).show();
+            // Chaining the filewriter to this asynchronous task
             new ASyncFileWriter().execute(trip);
         }
     }
