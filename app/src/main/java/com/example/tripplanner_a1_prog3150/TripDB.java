@@ -113,7 +113,31 @@ public class TripDB {
         public long insertTrip(Trip newTrip) {
                 ContentValues cv = new ContentValues();
                 cv.put(TRIP_ID, newTrip.getTripId());
-                cv.put()
+                cv.put(TRIP_ORIGIN, newTrip.getOrigin());
+                cv.put(TRIP_DESTINATION, newTrip.getDestination());
+                cv.put(TRIP_GROUP_SIZE, newTrip.getTripGoers());
+                cv.put(TRIP_AMENITIES_COST, newTrip.getAmenitiesCost());
+                cv.put(TRIP_TICKET_PRICE, newTrip.getTicketPrice());
+                cv.put(TRIP_NUM_OF_NIGHTS, newTrip.getTicketPrice());
+                cv.put(TRIP_NIGHT_COST, newTrip.getHotelCost());
+                cv.put(TRIP_TOTAL_COST, newTrip.getTotalCost());
+
+                this.openWriteableDB();
+                long rowID = db.insert(TRIP_TABLE, null, cv);
+                this.closeDB();
+
+                return rowID;
+        }
+
+        public int deleteTaskById(int tripID) {
+               String where = TRIP_ID + "= ?";
+               String[] whereArgs = { String.valueOf(tripID)};
+
+               this.openWriteableDB();
+               int rowCount = db.delete(TRIP_TABLE, where, whereArgs);
+               this.closeDB();
+
+               return rowCount;
         }
 
         public Trip getTripById(int tripID) {
@@ -141,7 +165,7 @@ public class TripDB {
                                 Trip existingTrip = new Trip();
 
                                 //Initialize class variables
-                                existingTrip.setTripId();
+                                existingTrip.setTripId(cursor.getInt(TRIP_ID_COL));
                                 existingTrip.setDestination(cursor.getString(TRIP_DESTINATION_COL));
                                 existingTrip.setOrigin(cursor.getString(TRIP_ORIGIN_COL));
                                 existingTrip.setTicketPrice(cursor.getInt(TRIP_TICKET_PRICE_COL));
