@@ -112,6 +112,8 @@ public class TripDB {
         //public methods
         public long insertTrip(Trip newTrip) {
                 ContentValues cv = new ContentValues();
+                cv.put(TRIP_ID, newTrip.getTripId());
+                cv.put()
         }
 
         public Trip getTripById(int tripID) {
@@ -139,6 +141,7 @@ public class TripDB {
                                 Trip existingTrip = new Trip();
 
                                 //Initialize class variables
+                                existingTrip.setTripId();
                                 existingTrip.setDestination(cursor.getString(TRIP_DESTINATION_COL));
                                 existingTrip.setOrigin(cursor.getString(TRIP_ORIGIN_COL));
                                 existingTrip.setTicketPrice(cursor.getInt(TRIP_TICKET_PRICE_COL));

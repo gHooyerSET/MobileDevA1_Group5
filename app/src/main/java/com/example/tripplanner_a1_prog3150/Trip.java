@@ -19,6 +19,7 @@ import java.io.Serializable;
  */
 public class Trip implements Serializable {
     // Trip Data
+    private int tripId;
     private String destination;
     private String origin;
     private float ticketPrice;
@@ -39,6 +40,7 @@ public class Trip implements Serializable {
      */
     public Trip()
     {
+        tripId = 0;
         destination = "";
         origin = "";
         ticketPrice = 0;
@@ -53,6 +55,7 @@ public class Trip implements Serializable {
 
 
     //Getters
+    public int getTripId() { return tripId; }
     public String getDestination()
     {
         return destination;
@@ -75,6 +78,7 @@ public class Trip implements Serializable {
 
 
     //Setters
+    public void setTripId(int tripId) { this.tripId = tripId; }
     public void setDestination(String destination)
     {
         this.destination = destination;
