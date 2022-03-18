@@ -1,6 +1,12 @@
-package com.example.tripplanner_a1_prog3150;
+/*
+ * FILE          : TripDB.java
+ * PROJECT       : PROG3150 - Assignment #1 - Trip Planner
+ * FIRST VERSION : 2022-03-16
+ * PROGRAMMER    : Patrick Cho and Nathan Domingo
+ * DESCRIPTION   : This file contains all database setup and functionality
+ */
 
-import java.util.ArrayList;
+package com.example.tripplanner_a1_prog3150;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -10,6 +16,11 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+/*  -- Class Header Comment
+    Name    :    TripDB
+    Purpose :    To handle the creation of database, creation of initial test data,
+                 and all database functionality
+    */
 public class TripDB {
 
         //Database Constants
@@ -61,13 +72,23 @@ public class TripDB {
 
         public static final String DROP_TRIP_TABLE =
                 "DROP TABLE IF EXISTS " + TRIP_TABLE;
-        
-        //DB Helper
+
+        /*  -- Class Header Comment
+        Name    :    DBHelper
+        Purpose :    To initialize the DB/DBHelper
+        */
         private static class DBHelper extends SQLiteOpenHelper {
                 public DBHelper(Context context, String name, CursorFactory factory, int version) {
                         super(context, name, factory, version);
                 }
 
+                /*  -- Function Header Comment
+                Name    : onCreate
+                Purpose : Performs initial database setup
+                Inputs  : SQLiteDatabase db - the database
+                Outputs : Creates trip table, and inserts test data
+                Returns : void
+                */
                 @Override
                 public void onCreate(SQLiteDatabase db) {
                         db.execSQL(TripDB.CREATE_TRIP_TABLE);
@@ -76,6 +97,15 @@ public class TripDB {
                         db.execSQL("INSERT INTO trip VALUES (2, 'Seoul', 'Toronto', 2, 0, 100, 3, 150, 650)");
                 }
 
+                /*  -- Function Header Comment
+                Name    : onUpgrade
+                Purpose : Logs DB upgrades, drops the old trip table, recreates it
+                Inputs  : SQLiteDatabase db - the database
+                          int oldVersion    - old database version number
+                          int new version   - new database version number
+                Outputs : Logs trip upgrade, drops old table
+                Returns : void
+                */
                 @Override
                 public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
                         Log.d("Trip", "Upgrading db from version " + oldVersion + "to" + newVersion);
@@ -88,21 +118,60 @@ public class TripDB {
         private SQLiteDatabase db;
         private DBHelper dbHelper;
 
-        //constructor
+        /*  -- Function Header Comment
+        Name    : TripDB
+        Purpose : Initializes the DBHelper (by association the DB as well)
+        Inputs  : Context context - application context
+        Outputs : n/a
+        Returns : n/a
+        */
         public TripDB(Context context) {
                 dbHelper = new DBHelper(context, DB_NAME, null, DB_VERSION);
         }
 
-        //private methods
+        /*  -- Function Header Comment
+        Name    : openReadableDB
+        Purpose : Opens database reference for read operations
+        Inputs  : n/a
+        Outputs : n/a
+        Returns : n/a
+        */
         private void openReadableDB() { db = dbHelper.getReadableDatabase(); }
 
+        /*  -- Function Header Comment
+        Name    : openWriteableDB
+        Purpose : Opens database reference for write operations
+        Inputs  : n/a
+        Outputs : n/a
+        Returns : n/a
+        */
         private void openWriteableDB() { db = dbHelper.getWritableDatabase(); }
 
+        /*  -- Function Header Comment
+        Name    : closeDB
+        Purpose : Closes DB reference
+        Inputs  : n/a
+        Outputs : n/a
+        Returns : n/a
+        */
         private void closeDB() { if (db != null) db.close(); }
 
+        /*  -- Function Header Comment
+        Name    : closeCursor
+        Purpose : Closes cursor reference
+        Inputs  : Cursor cursor - the cursor
+        Outputs : n/a
+        Returns : n/a
+        */
         private void closeCursor(Cursor cursor) { if (cursor != null) cursor.close(); }
 
-        //public methods
+        /*  -- Function Header Comment
+        Name    : insertTrip
+        Purpose : Insert trip to the Trip table
+        Inputs  : Trip newTrip - trip object to be added
+        Outputs : newTrip info to database
+        Returns : long rowID - the index of the insertion
+        */
         public long insertTrip(Trip newTrip) {
                 ContentValues cv = new ContentValues();
                 cv.put(TRIP_ID, newTrip.getTripId());
@@ -122,6 +191,13 @@ public class TripDB {
                 return rowID;
         }
 
+        /*  -- Function Header Comment
+        Name    : deleteTaskById
+        Purpose : Delete task based on given ID
+        Inputs  : int tripID - the ID of the trip to be removed
+        Outputs : Removes trip from Trip table
+        Returns : int rowCount - num of deleted rows
+        */
         public int deleteTaskById(int tripID) {
                String where = TRIP_ID + "= ?";
                String[] whereArgs = { String.valueOf(tripID)};
@@ -133,6 +209,14 @@ public class TripDB {
                return rowCount;
         }
 
+        /*  -- Function Header Comment
+        Name    : getTripById
+        Purpose : Gets trip information based on ID
+        Inputs  : int tripID - the trip to be found
+        Outputs : n/a
+        Returns : Trip existingTrip - a previously existing trip from the database\
+                  null - if trip does not exist
+        */
         public Trip getTripById(int tripID) {
                 String where = TRIP_ID + "= ?";
                 String[] whereArgs = { Integer.toString(tripID) };
@@ -144,11 +228,23 @@ public class TripDB {
 
                 Trip existingTrip = getTripFromCursor(cursor);
 
+                if (existingTrip == null)
+                {
+                        return null;
+                }
+
                 this.closeCursor(cursor);
                 this.closeDB();
                 return existingTrip;
         }
 
+        /*  -- Function Header Comment
+        Name    : getTripFromCursor
+        Purpose : Gets trip information based on cursor location
+        Inputs  : Cursor cursor - location of desired trip
+        Outputs : n/a
+        Returns : Trip existingTrip - a previously existing trip from the database
+        */
         private static Trip getTripFromCursor(Cursor cursor) {
                 if (cursor == null || cursor.getCount() == 0) {
                         return null;

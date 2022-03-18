@@ -33,7 +33,7 @@
     <string name="champagne_bar">Champagne Bar</string>
     <string name="poseidon_jacuzzi">Poseidon Jacuzzi</string>
     <string name="available_premium_amenities">Add Premium Amenities</string>
-    <string name="view_hotel">View Hotel</string>
+    <string name="createReceiptStr">Create Receipt!</string>
     <string-array name="placesArray">
         <item>Toronto</item>
         <item>Calgary</item>
