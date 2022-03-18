@@ -61,14 +61,7 @@ public class TripDB {
 
         public static final String DROP_TRIP_TABLE =
                 "DROP TABLE IF EXISTS " + TRIP_TABLE;
-
-        //Other Statements
-        public static final String GET_TRIP_BY_ID =
-                "SELECT " + TRIP_ID + ", " + TRIP_ORIGIN + ", " + TRIP_DESTINATION +
-                 ", " + TRIP_GROUP_SIZE + ", " + TRIP_AMENITIES_COST + ", " + TRIP_TICKET_PRICE +
-                 ", " + TRIP_NUM_OF_NIGHTS + ", " + TRIP_NIGHT_COST + ", " + TRIP_TOTAL_COST +
-                 "FROM " + TRIP_TABLE + "WHERE " + TRIP_ID + "= ";
-
+        
         //DB Helper
         private static class DBHelper extends SQLiteOpenHelper {
                 public DBHelper(Context context, String name, CursorFactory factory, int version) {
