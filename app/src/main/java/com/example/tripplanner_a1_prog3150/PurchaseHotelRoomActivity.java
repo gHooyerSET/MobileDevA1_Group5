@@ -26,6 +26,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/*  -- Class Header Comment
+    Name    :    PurchaseHotelRoomActivity
+    Purpose :    To handle all code behind functionality for the Purchase Hotel Room Activity
+    */
 public class PurchaseHotelRoomActivity extends MenuActivity {
 
     //Constants
