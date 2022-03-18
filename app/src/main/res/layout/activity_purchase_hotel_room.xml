@@ -6,142 +6,163 @@
     android:layout_height="match_parent"
     tools:context=".PurchaseHotelRoomActivity">
 
-    <TextView
-        android:id="@+id/hotelCostTextTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="13dp"
-        android:text="@string/hotelCostTextStr"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hotelCostListView" />
-
-    <TextView
-        android:id="@+id/hotelAmenitiesTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="29dp"
-        android:text="@string/available_premium_amenities"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar" />
-
-    <TextView
-        android:id="@+id/costNumberTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="564dp"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/hotelCostTextTextView"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/nightsTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/nightsStr"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/hotelSpinner"
-        app:layout_constraintTop_toBottomOf="@+id/hotelSpinner" />
-
-    <TextView
-        android:id="@+id/hotelDestinationTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/destinationStr"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/hotelSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:entries="@array/hotelArray"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <SeekBar
-        android:id="@+id/seekBar"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:max="14"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nightsTextView" />
-
-    <TextView
-        android:id="@+id/nightNumberTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar" />
-
-    <Button
-        android:id="@+id/nextScreenButton3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="146dp"
-        android:layout_marginBottom="45dp"
-        android:text="@string/nextScreenButtonStr"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <CheckBox
-        android:id="@+id/beddingCheckBox"
-        android:layout_width="130dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="24dp"
-        android:text="@string/premium_bedding"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hotelAmenitiesTextView" />
+        app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="@string/destinationStr"
+                    android:textSize="24sp" />
+                <TextView
+                    android:id="@+id/hotelDestinationTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:textSize="24sp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <Spinner
+                    android:id="@+id/hotelSpinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:entries="@array/hotelArray"
+                    tools:ignore="TouchTargetSizeCheck" />
+                <TextView
+                    android:id="@+id/nightsTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="@string/nightsStr"
+                    android:textSize="24sp"/>
+                <SeekBar
+                    android:id="@+id/seekBar"
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:max="14"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+                    <TextView
+                        android:id="@+id/nightNumberTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+                <TextView
+                    android:id="@+id/hotelAmenitiesTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="@string/available_premium_amenities"
+                    android:textSize="24sp"/>
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center">
+                    <CheckBox
+                        android:id="@+id/beddingCheckBox"
+                        android:layout_width="130dp"
+                        android:layout_height="53dp"
+                        android:text="@string/premium_bedding" />
 
-    <CheckBox
-        android:id="@+id/champagneCheckBox"
-        android:layout_width="130dp"
-        android:layout_height="53dp"
-        android:text="@string/champagne_bar"
-        app:layout_constraintStart_toEndOf="@+id/beddingCheckBox"
-        app:layout_constraintTop_toBottomOf="@+id/hotelAmenitiesTextView" />
+                    <CheckBox
+                        android:id="@+id/champagneCheckBox"
+                        android:layout_width="130dp"
+                        android:layout_height="53dp"
+                        android:text="@string/champagne_bar"/>
 
-    <CheckBox
-        android:id="@+id/jacuzziCheckBox"
-        android:layout_width="130dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="61dp"
-        android:text="@string/poseidon_jacuzzi"
-        app:layout_constraintStart_toEndOf="@+id/champagneCheckBox"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+                    <CheckBox
+                        android:id="@+id/jacuzziCheckBox"
+                        android:layout_width="130dp"
+                        android:layout_height="53dp"
+                        android:text="@string/poseidon_jacuzzi" />
+                </LinearLayout>
+                <ListView
+                    android:id="@+id/hotelCostListView"
+                    android:layout_width="355dp"
+                    android:layout_height="205dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="13dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/hotelCostTextTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:text="@string/hotelCostTextStr"
+                        android:textSize="24sp" />
+                    <TextView
+                        android:id="@+id/costNumberTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+                    <Button
+                        android:id="@+id/nextScreenButton3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/nextScreenButtonStr"/>
+                </LinearLayout>
 
-    <ListView
-        android:id="@+id/hotelCostListView"
-        android:layout_width="355dp"
-        android:layout_height="205dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="13dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/beddingCheckBox" />
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
