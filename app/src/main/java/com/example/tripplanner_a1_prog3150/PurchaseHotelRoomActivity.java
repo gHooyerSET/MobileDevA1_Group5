@@ -97,7 +97,10 @@ public class PurchaseHotelRoomActivity extends MenuActivity {
                 spinnerPosition = hotelSpinner.getSelectedItemPosition();
                 nightCost = Float.valueOf(hotelCosts[spinnerPosition]);
                 totalCost = nightCount * nightCost;
-                costNumberTextView.setText("$" + String.format("%.02f", totalCost));
+                String totalCostString = String.format("Room Cost $%.02f", nightCount * nightCost);
+                amenities.set(0, totalCostString);
+                amenitiesAdapter.notifyDataSetChanged();
+                costNumberTextView.setText("$" + String.format("%.02f", totalCost + amenitiesTotalCost));
             }
 
             @Override
