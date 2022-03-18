@@ -10,6 +10,7 @@ package com.example.tripplanner_a1_prog3150;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -49,6 +50,8 @@ public class PurchaseHotelRoomActivity extends MenuActivity {
     private CheckBox beddingCheckBox;
     private CheckBox champagneCheckBox;
     private CheckBox jacuzziCheckBox;
+    private Button viewHotelButton;
+    private String hotelUrl;
     ArrayList<String> amenities = new ArrayList();
     // Trip
     private Trip trip;
@@ -72,6 +75,7 @@ public class PurchaseHotelRoomActivity extends MenuActivity {
         beddingCheckBox = findViewById(R.id.beddingCheckBox);
         champagneCheckBox = findViewById(R.id.champagneCheckBox);
         jacuzziCheckBox = findViewById(R.id.jacuzziCheckBox);
+        viewHotelButton = findViewById(R.id.viewHotelButton);
         ArrayAdapter<String> amenitiesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, amenities);
         ListView amenitiesListView = findViewById(R.id.hotelCostListView);
         amenitiesListView.setAdapter(amenitiesAdapter);
@@ -132,7 +136,6 @@ public class PurchaseHotelRoomActivity extends MenuActivity {
                 amenitiesAdapter.notifyDataSetChanged();
             }
         });
-
 
         //Amenities Listeners
         beddingCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -196,12 +199,34 @@ public class PurchaseHotelRoomActivity extends MenuActivity {
             }
         });
 
-        //Button Listener
+        //Button Listeners
+        // Hotel Web View button
+        viewHotelButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            //Ref: https://www.tutorialspoint.com/how-to-open-a-website-in-android-s-web-browser-from-any-application
+            public void onClick(View view) {
+                spinnerPosition = hotelSpinner.getSelectedItemPosition();
+                String nightCostString = hotelCosts[spinnerPosition];
+                switch (nightCostString) {
+                    case "100.00":
+                        hotelUrl = "https://www.wyndhamhotels.com/en-ca/super-8";
+                        break;
+                    case "250.00":
+                        hotelUrl = "https://www.hilton.com/en/";
+                        break;
+                    case "500.00":
+                        hotelUrl = "https://www.fourseasons.com/";
+                        break;
+                }
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(hotelUrl)));
+            }
+        });
+
         nextScreenButton.setOnClickListener(view -> {
-             //https://stackoverflow.com/questions/4186021/how-to-start-new-activity-on-button-click
+             //Ref: https://stackoverflow.com/questions/4186021/how-to-start-new-activity-on-button-click
             Intent nextScreenIntent = new Intent(PurchaseHotelRoomActivity.this,ReviewTripActivity.class);
             Intent menuIntent = new Intent(PurchaseHotelRoomActivity.this,MenuActivity.class);
-             //https://stackoverflow.com/questions/2139134/how-to-send-an-object-from-one-android-activity-to-another-using-intents
+             //Ref: https://stackoverflow.com/questions/2139134/how-to-send-an-object-from-one-android-activity-to-another-using-intents
             trip.setAmenitiesCost(amenitiesTotalCost);
             trip.setHotelCost(nightCost);
             trip.setNights(nightCount);

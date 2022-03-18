@@ -92,7 +92,7 @@ public class ConfirmationActivity extends MenuActivity {
             fileString += "Origin: " + trip.getOrigin() + "\n";
             fileString += "Destination: " + trip.getDestination() + "\n";
             fileString += "Trip Goers: " + trip.getTripGoers() + "\n";
-            fileString += "# of Nights: " + String.format("%.2f",trip.getNights()) + "\n";
+            fileString += "# of Nights: " + String.format("%d",trip.getNights()) + "\n";
             fileString += "Amenities Cost: $" + String.format("%.2f",trip.getAmenitiesCost()) + "\n";
             fileString += "Hotel Cost: $" + String.format("%.2f",trip.getHotelCost()) + " / night\n";
             fileString += "Total Hotel Cost: $" + String.format("%.2f",trip.getTotalHotelCost()) + "\n";
