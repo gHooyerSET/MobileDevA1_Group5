@@ -14,16 +14,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 public class ConfirmationActivity extends MenuActivity {
@@ -33,8 +29,8 @@ public class ConfirmationActivity extends MenuActivity {
     private TextView confirmationDestinationTextView;
     private TextView confirmationTotalCostTextView;
     private Button newTripButton;
-    private Button createReceiptButton;
     private Trip trip;
+    private TripDB tripDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +42,18 @@ public class ConfirmationActivity extends MenuActivity {
         confirmationDestinationTextView = findViewById(R.id.confirmationDestinationTextView);
         confirmationTotalCostTextView = findViewById(R.id.confirmationTripCostTextView);
         newTripButton = findViewById(R.id.newTripButton);
-        createReceiptButton = findViewById(R.id.createRcptBtn);
         //Set textview text
         confirmationTotalCostTextView.setText("$" + String.format("%.02f",trip.getTotalCost()));
         confirmationOriginTextView.setText(trip.getOrigin());
         confirmationDestinationTextView.setText(trip.getDestination());
+
+
+        // Use a toast to notify the user about the asynchronous operation beginning
+        //Create the tripDB object
+        tripDB = new TripDB(this);
+        // Start the asynchronous task to create the database entry
+        // and create a 'receipt' file as an asynchronous operation
+        new ASyncDatabaseCreator().execute(trip,tripDB);
 
         //Set up event handler
         //This button sends us back to the MainActivity screen
@@ -72,40 +75,24 @@ public class ConfirmationActivity extends MenuActivity {
              */
             ConfirmationActivity.this.startActivity(nextScreenIntent);
         });
-
-        createReceiptButton.setOnClickListener(view -> {
-            // Start the asynchronous task to create the database entry
-            // and create a 'receipt' file as an asynchronous operation
-            new ASyncDatabaseCreator().execute(trip);
-        });
     }
 
-    public class ASyncFileWriter extends AsyncTask<Trip,Void,Trip>
+    public class ASyncFileWriter extends AsyncTask
     {
-        private String filename;
 
         @Override
-        protected void onPreExecute() {
-            Toast.makeText(ConfirmationActivity.this,"Creating receipt file...",Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        protected Trip doInBackground(Trip... params) {
-
+        protected Object doInBackground(@NonNull Object[] params) {
             String fileString = "";
             byte[] fileBuffer;
-            Trip trip = (Trip)params[0];
-
+            String filename = "";
             // Create the file name
             filename = trip.getTripId() + "_" + trip.getDestination() + "_" + "trip.txt";
-            // Create the file
-            File file = new File(filename);
             // Create file data in the string
             fileString = "Trip ID: " + trip.getTripId() + "\n";
             fileString += "Origin: " + trip.getOrigin() + "\n";
             fileString += "Destination: " + trip.getDestination() + "\n";
             fileString += "Trip Goers: " + trip.getTripGoers() + "\n";
-            fileString += "# of Nights: " + trip.getNights() + "\n";
+            fileString += "# of Nights: " + String.format("%d",trip.getNights()) + "\n";
             fileString += "Amenities Cost: $" + String.format("%.2f",trip.getAmenitiesCost()) + "\n";
             fileString += "Hotel Cost: $" + String.format("%.2f",trip.getHotelCost()) + " / night\n";
             fileString += "Total Hotel Cost: $" + String.format("%.2f",trip.getTotalHotelCost()) + "\n";
@@ -114,8 +101,6 @@ public class ConfirmationActivity extends MenuActivity {
             fileString += "Total Cost: $" + String.format("%.2f",trip.getTotalCost()) + "\n";
             try
             {
-                // Try to create the file if it doesn't exist
-                file.createNewFile();
                 // Create the output filestream
                 FileOutputStream out = openFileOutput(filename, Context.MODE_PRIVATE);
                 // Encode the string to bytes
@@ -128,44 +113,31 @@ public class ConfirmationActivity extends MenuActivity {
                 // Log the exception
                 Log.d(String.format("%d",e.hashCode()),e.toString());
             }
-            return trip;
-
-        }
-
-        @Override
-        protected void onPostExecute(Trip trip) {
-            Toast.makeText(ConfirmationActivity.this,"File created! " + filename,Toast.LENGTH_SHORT).show();
+            return null;
         }
     }
 
-    public class ASyncDatabaseCreator extends AsyncTask<Trip,Void,Trip>
+    public class ASyncDatabaseCreator extends AsyncTask
     {
         @Override
-        protected void onPreExecute() {
-            Toast.makeText(ConfirmationActivity.this,"Inserting trip into DB...",Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        protected Trip doInBackground(Trip... params) {
-            // Get the reference to the trip
-            Trip trip = (Trip)params[0];
-            // Create the reference to the tripDB
-            TripDB tripDB = new TripDB(ConfirmationActivity.this);
-
+        protected Object doInBackground(Object[] objects) {
             try {
                 // Insert the trip
                 tripDB.insertTrip(trip);
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            return null;
+        }
 
-            return trip;
+        @Override
+        protected void onProgressUpdate(Object[] values) {
+            super.onProgressUpdate(values);
 
         }
 
         @Override
-        protected void onPostExecute(Trip trip) {
-            Toast.makeText(ConfirmationActivity.this,"Trip inserted!",Toast.LENGTH_SHORT).show();
+        protected void onPostExecute(Object o) {
             new ASyncFileWriter().execute(trip);
         }
     }

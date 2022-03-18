@@ -16,6 +16,10 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+/*  -- Class Header Comment
+    Name    :    MenuActivity
+    Purpose :    To handle all code behind functionality for the Menu Activity
+    */
 public class MenuActivity extends AppCompatActivity {
     // Create options menu
     @Override

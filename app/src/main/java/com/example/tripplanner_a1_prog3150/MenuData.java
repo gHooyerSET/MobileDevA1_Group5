@@ -7,6 +7,10 @@
  */
 package com.example.tripplanner_a1_prog3150;
 
+/*  -- Class Header Comment
+    Name    :    MenuData
+    Purpose :    Static variables for Menu Activity logic
+    */
 public class MenuData {
     public static boolean enableFlight = false;
     public static boolean enableHotel = false;

@@ -37,7 +37,6 @@ public class PurchaseHotelRoomActivity extends MenuActivity {
     final private int beddingCost = 100;
     final private int champagneCost = 200;
     final private int jacuzziCost = 300;
-
     //Create our variables
     private Spinner hotelSpinner;
     private SeekBar hotelNightBar;
@@ -204,6 +203,7 @@ public class PurchaseHotelRoomActivity extends MenuActivity {
         });
 
         //Button Listeners
+
         // Hotel Web View button
         viewHotelButton.setOnClickListener(new View.OnClickListener(){
             @Override

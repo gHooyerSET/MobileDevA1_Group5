@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
+/*  -- Class Header Comment
+    Name    :    ReviewTripActivity
+    Purpose :    To handle all code behind functionality for the Purchase Review Trip Activity
+    */
 public class ReviewTripActivity extends MenuActivity {
 
     private Trip trip;
