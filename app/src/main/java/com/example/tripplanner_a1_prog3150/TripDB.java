@@ -1,7 +1,5 @@
 package com.example.tripplanner_a1_prog3150;
 
-import java.util.ArrayList;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -61,7 +59,7 @@ public class TripDB {
 
         public static final String DROP_TRIP_TABLE =
                 "DROP TABLE IF EXISTS " + TRIP_TABLE;
-        
+
         //DB Helper
         private static class DBHelper extends SQLiteOpenHelper {
                 public DBHelper(Context context, String name, CursorFactory factory, int version) {
