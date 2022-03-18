@@ -2,7 +2,7 @@
  * FILE          : PurchaseTicketActivity.java
  * PROJECT       : PROG3150 - Assignment #1 - Trip Planner
  * FIRST VERSION : 2022-01-27
- * PROGRAMMER    : Waleed Ahmed
+ * PROGRAMMER    : Waleed Ahmed and Patrick Cho
  * DESCRIPTION   : The code behind for the Purchase Ticket Activity.
  */
 package com.example.tripplanner_a1_prog3150;
@@ -17,6 +17,10 @@ import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
+/*  -- Class Header Comment
+    Name    :    PurchaseTicketActivity
+    Purpose :    To handle all code behind functionality for the Purchase Ticket Page
+    */
 public class PurchaseTicketActivity extends MenuActivity {
 
     private Trip trip;
@@ -144,6 +148,14 @@ public class PurchaseTicketActivity extends MenuActivity {
         });
     }
 
+    /*  -- Function Header Comment
+        Name    : CalculateTotal
+        Purpose : Calculate total ticket price
+        Inputs  : int numPeople  - number of people
+                  float indPrice - individual ticket cost
+        Outputs : n/a
+        Returns : Void
+        */
     public void CalculateTotal(int numPeople, float indPrice)
     {
         totalPrice = (TextView) findViewById(R.id.totalTicketPriceTextView);
