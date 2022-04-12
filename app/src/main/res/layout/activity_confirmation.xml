@@ -101,6 +101,16 @@
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <Button
+        android:id="@+id/sendTripButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/sendTripButtonStr"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newTripButton" />
+
+    <Button
         android:id="@+id/createRcptBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -108,5 +118,5 @@
         android:text="@string/createReceiptStr"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newTripButton" />
+        app:layout_constraintTop_toBottomOf="@+id/sendTripButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

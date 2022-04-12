@@ -34,6 +34,7 @@ public class ConfirmationActivity extends MenuActivity {
     private TextView confirmationTotalCostTextView;
     private Button newTripButton;
     private Button createReceiptButton;
+    private Button sendTripButton;
     private Trip trip;
 
     @Override
@@ -46,6 +47,7 @@ public class ConfirmationActivity extends MenuActivity {
         confirmationDestinationTextView = findViewById(R.id.confirmationDestinationTextView);
         confirmationTotalCostTextView = findViewById(R.id.confirmationTripCostTextView);
         newTripButton = findViewById(R.id.newTripButton);
+        sendTripButton = findViewById(R.id.sendTripButton);
         createReceiptButton = findViewById(R.id.createRcptBtn);
         //Set textview text
         confirmationTotalCostTextView.setText("$" + String.format("%.02f",trip.getTotalCost()));
@@ -71,6 +73,11 @@ public class ConfirmationActivity extends MenuActivity {
              *   AVAILABILITY : https://stackoverflow.com/questions/2139134/how-to-send-an-object-from-one-android-activity-to-another-using-intents
              */
             ConfirmationActivity.this.startActivity(nextScreenIntent);
+        });
+
+        sendTripButton.setOnClickListener(view -> {
+            //Forward to contact page
+            Intent nextScreenIntent = new Intent( ConfirmationActivity.this, MainActivity.class);
         });
 
         createReceiptButton.setOnClickListener(view -> {
