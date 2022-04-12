@@ -10,7 +10,9 @@ package com.example.tripplanner_a1_prog3150;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -36,7 +38,7 @@ public class ConfirmationActivity extends MenuActivity {
     private Button createReceiptButton;
     private Button sendTripButton;
     private Trip trip;
-
+    private AlertDialog permissionDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,15 +78,31 @@ public class ConfirmationActivity extends MenuActivity {
         });
 
         sendTripButton.setOnClickListener(view -> {
-            //Forward to contact page
-
             //Get permission to use contacts
+            permissionDialog = new AlertDialog.Builder(ConfirmationActivity.this)
+                    .setMessage("Allow SET Trip Planner to access your contacts?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int which) {
+                            Intent nextScreenIntent = new Intent( ConfirmationActivity.this, SendTripActivity.class);
+                            //Go to next page
+                            ConfirmationActivity.this.startActivity(nextScreenIntent);
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int which) {
+                            //Do nothing
+                        }
+                    })
+                    .setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            //Do nothing
+                        }
+                    })
+                    .show();
 
-            //If yes
-            //Set intent for next page
-            Intent nextScreenIntent = new Intent( ConfirmationActivity.this, SendTripActivity.class);
-            //Go to next page
-            ConfirmationActivity.this.startActivity(nextScreenIntent);
         });
 
         createReceiptButton.setOnClickListener(view -> {
