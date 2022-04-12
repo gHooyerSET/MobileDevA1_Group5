@@ -77,7 +77,14 @@ public class ConfirmationActivity extends MenuActivity {
 
         sendTripButton.setOnClickListener(view -> {
             //Forward to contact page
-            Intent nextScreenIntent = new Intent( ConfirmationActivity.this, MainActivity.class);
+
+            //Get permission to use contacts
+
+            //If yes
+            //Set intent for next page
+            Intent nextScreenIntent = new Intent( ConfirmationActivity.this, SendTripActivity.class);
+            //Go to next page
+            ConfirmationActivity.this.startActivity(nextScreenIntent);
         });
 
         createReceiptButton.setOnClickListener(view -> {
