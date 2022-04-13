@@ -116,7 +116,7 @@ public class TripDB {
 
         //DB and DBHelper Objects
         private SQLiteDatabase db;
-        private DBHelper dbHelper;
+        private final DBHelper dbHelper;
 
         /*  -- Function Header Comment
         Name    : TripDB

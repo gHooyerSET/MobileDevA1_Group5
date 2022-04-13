@@ -15,6 +15,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,6 +28,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+
 
 public class MainActivity extends MenuActivity {
     //Create our variables
@@ -36,6 +39,9 @@ public class MainActivity extends MenuActivity {
     private int hideToastHack;
     private Trip trip;
     private TextView quizTextView;
+
+    IntentFilter myFilter = null;
+    FileReceiver receiver = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,8 +100,16 @@ public class MainActivity extends MenuActivity {
             menuIntent.putExtra("trip",trip);
             MainActivity.this.startActivity(nextScreenIntent);
         });
-
-
+        /*
+         * TITLE : Week 9 - Receivers, Tabs and Adapters Examples
+         * AUTHOR : Igor Pustylnick
+         * DATE : 2011-09-14
+         * VERSION : 1.7.11
+         * AVAILABIILTY : https://conestoga.desire2learn.com/d2l/le/content/563407/viewContent/11676574/View
+         */
+        myFilter = new IntentFilter(FileReceiver.FILE_BROADCAST);
+        receiver = new FileReceiver();
+        registerReceiver(receiver, myFilter);
     }
 
     public void checkSelections()

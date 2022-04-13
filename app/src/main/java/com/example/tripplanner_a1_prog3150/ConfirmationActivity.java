@@ -26,6 +26,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
+/*
+ * TITLE : Week 9 - Receivers, Tabs and Adapters Examples
+ * AUTHOR : Igor Pustylnick
+ * DATE : 2011-09-14
+ * VERSION : 1.7.11
+ * AVAILABIILTY : https://conestoga.desire2learn.com/d2l/le/content/563407/viewContent/11676574/View
+ */
 public class ConfirmationActivity extends MenuActivity {
 
     //Create variables
@@ -46,11 +53,19 @@ public class ConfirmationActivity extends MenuActivity {
         confirmationDestinationTextView = findViewById(R.id.confirmationDestinationTextView);
         confirmationTotalCostTextView = findViewById(R.id.confirmationTripCostTextView);
         newTripButton = findViewById(R.id.newTripButton);
-        createReceiptButton = findViewById(R.id.createRcptBtn);
         //Set textview text
         confirmationTotalCostTextView.setText("$" + String.format("%.02f",trip.getTotalCost()));
         confirmationOriginTextView.setText(trip.getOrigin());
         confirmationDestinationTextView.setText(trip.getDestination());
+
+
+        //Create the intent and send the broadcast message
+        Intent fileReceiverIntent = new Intent(FileReceiver.FILE_BROADCAST);
+        //Add the extras
+        fileReceiverIntent.putExtra("message","Start");
+        fileReceiverIntent.putExtra("trip",trip);
+        //Then send the intent
+        sendBroadcast(fileReceiverIntent);
 
         //Set up event handler
         //This button sends us back to the MainActivity screen
@@ -72,110 +87,5 @@ public class ConfirmationActivity extends MenuActivity {
              */
             ConfirmationActivity.this.startActivity(nextScreenIntent);
         });
-
-        createReceiptButton.setOnClickListener(view -> {
-            // Start the asynchronous task to create the database entry
-            // and create a 'receipt' file as an asynchronous operation
-            new ASyncDatabaseCreator().execute(trip);
-        });
-    }
-
-    /*  -- Class Header Comment
-    Name    :    ASyncFileWriter
-    Purpose :    Creates a receipt text file (in a more fully-featured app, this may be uploaded to a server)
-                 asynchronously
-    */
-    public class ASyncFileWriter extends AsyncTask<Trip,Void,Trip>
-    {
-        private String filename;
-
-        @Override
-        protected void onPreExecute() {
-            Toast.makeText(ConfirmationActivity.this,"Creating receipt file...",Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        protected Trip doInBackground(Trip... params) {
-
-            String fileString = "";
-            byte[] fileBuffer;
-            Trip trip = (Trip)params[0];
-
-            // Create the file name
-            filename = trip.getTripId() + "_" + trip.getDestination() + "_" + "trip.txt";
-            // Create the file
-            File file = new File(filename);
-            // Create file data in the string
-            fileString = "Trip ID: " + trip.getTripId() + "\n";
-            fileString += "Origin: " + trip.getOrigin() + "\n";
-            fileString += "Destination: " + trip.getDestination() + "\n";
-            fileString += "Trip Goers: " + trip.getTripGoers() + "\n";
-            fileString += "# of Nights: " + trip.getNights() + "\n";
-            fileString += "Amenities Cost: $" + String.format("%.2f",trip.getAmenitiesCost()) + "\n";
-            fileString += "Hotel Cost: $" + String.format("%.2f",trip.getHotelCost()) + " / night\n";
-            fileString += "Total Hotel Cost: $" + String.format("%.2f",trip.getTotalHotelCost()) + "\n";
-            fileString += "Ticket Price: $" + String.format("%.2f",trip.getTicketPrice()) + "\n";
-            fileString += "Total Ticket Cost: $" + String.format("%.2f",trip.getTotalTicketCost()) + "\n";
-            fileString += "Total Cost: $" + String.format("%.2f",trip.getTotalCost()) + "\n";
-            try
-            {
-                // Try to create the file if it doesn't exist
-                file.createNewFile();
-                // Create the output filestream
-                FileOutputStream out = openFileOutput(filename, Context.MODE_PRIVATE);
-                // Encode the string to bytes
-                fileBuffer = fileString.getBytes(StandardCharsets.UTF_8);
-                // Write the string
-                out.write(fileBuffer,0,fileBuffer.length);
-                // Close the file
-                out.close();
-            } catch (Exception e) {
-                // Log the exception
-                Log.d(String.format("%d",e.hashCode()),e.toString());
-            }
-            return trip;
-
-        }
-
-        @Override
-        protected void onPostExecute(Trip trip) {
-            Toast.makeText(ConfirmationActivity.this,"File created! " + filename,Toast.LENGTH_SHORT).show();
-        }
-    }
-    /*  -- Class Header Comment
-    Name    :    ASyncDatabaseCreator
-    Purpose :    Stores the trip information into a database, asynchronously
-    */
-    public class ASyncDatabaseCreator extends AsyncTask<Trip,Void,Trip>
-    {
-        @Override
-        protected void onPreExecute() {
-            Toast.makeText(ConfirmationActivity.this,"Inserting trip into DB...",Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        protected Trip doInBackground(Trip... params) {
-            // Get the reference to the trip
-            Trip trip = (Trip)params[0];
-            // Create the reference to the tripDB
-            TripDB tripDB = new TripDB(ConfirmationActivity.this);
-
-            try {
-                // Insert the trip
-                tripDB.insertTrip(trip);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            return trip;
-
-        }
-
-        @Override
-        protected void onPostExecute(Trip trip) {
-            Toast.makeText(ConfirmationActivity.this,"Trip inserted!",Toast.LENGTH_SHORT).show();
-            // Chaining the filewriter to this asynchronous task
-            new ASyncFileWriter().execute(trip);
-        }
     }
 }
