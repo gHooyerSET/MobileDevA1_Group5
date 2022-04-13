@@ -8,22 +8,21 @@
 
 package com.example.tripplanner_a1_prog3150;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.Manifest;
-import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.util.Log;
-import android.widget.TextView;
 import java.util.List;
 import java.util.ArrayList;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 public class SendTripActivity extends MenuActivity {
     private static final int PERMISSIONS_REQUEST_READ_CONTACTS=1;
@@ -34,7 +33,8 @@ public class SendTripActivity extends MenuActivity {
 
     //Create variables
     private Spinner contactSpinner;
-
+    private Button sendTripToContactButton;
+    private Button goBackButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +43,8 @@ public class SendTripActivity extends MenuActivity {
 
         //Initialize Variable
         contactSpinner = findViewById(R.id.contactSpinner);
+        sendTripToContactButton = findViewById(R.id.sendTripToContactButton);
+        goBackButton = findViewById(R.id.goBackButton);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
                 && checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
@@ -51,7 +53,17 @@ public class SendTripActivity extends MenuActivity {
             getContacts(contactSpinner);
         }
 
-        //Initialize Button Handler
+        //Initialize Button Handlers
+        sendTripToContactButton.setOnClickListener(view -> {
+            Toast.makeText(SendTripActivity.this,"Trip Sent!", Toast.LENGTH_SHORT).show();
+        });
+
+        goBackButton.setOnClickListener(view -> {
+            Intent nextScreenIntent = new Intent( SendTripActivity.this, ConfirmationActivity.class);
+            //Go to next page
+            SendTripActivity.this.startActivity(nextScreenIntent);
+        });
+
     }
     public void getContacts(Spinner contactSpinner) {
         List<String> nameArray = new ArrayList<String>();
