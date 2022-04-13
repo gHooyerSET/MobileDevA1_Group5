@@ -80,6 +80,7 @@ public class ConfirmationActivity extends MenuActivity {
         sendTripButton.setOnClickListener(view -> {
            Intent nextScreenIntent = new Intent( ConfirmationActivity.this, SendTripActivity.class);
            //Go to next page
+           nextScreenIntent.putExtra("trip", trip);
            ConfirmationActivity.this.startActivity(nextScreenIntent);
         });
 

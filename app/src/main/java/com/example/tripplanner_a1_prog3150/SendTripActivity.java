@@ -41,6 +41,7 @@ public class SendTripActivity extends MenuActivity {
     private Button refreshContactsListButton;
     private AlertDialog permissionDialog;
     private ArrayList<String> nameArray;
+    private Trip trip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,7 @@ public class SendTripActivity extends MenuActivity {
         sendTripToContactButton = findViewById(R.id.sendTripToContactButton);
         goBackButton = findViewById(R.id.goBackButton);
         refreshContactsListButton = findViewById(R.id.refreshContactListButton);
-
+        trip = (Trip)getIntent().getSerializableExtra("trip");
         nameArray = new ArrayList<String>();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
@@ -69,8 +70,10 @@ public class SendTripActivity extends MenuActivity {
         //Initialize Button Handlers
 
         refreshContactsListButton.setOnClickListener(view -> {
-            finish();
-            startActivity(getIntent());
+            Intent refreshIntent = new Intent( SendTripActivity.this, SendTripActivity.class);
+            //Go to next page
+            refreshIntent.putExtra("trip", trip);
+            SendTripActivity.this.startActivity(refreshIntent);
         });
 
         sendTripToContactButton.setOnClickListener(view -> {
@@ -102,6 +105,7 @@ public class SendTripActivity extends MenuActivity {
         goBackButton.setOnClickListener(view -> {
             Intent previousScreenIntent = new Intent( SendTripActivity.this, ConfirmationActivity.class);
             //Go to previous page
+            previousScreenIntent.putExtra("trip", trip);
             SendTripActivity.this.startActivity(previousScreenIntent);
         });
     }
