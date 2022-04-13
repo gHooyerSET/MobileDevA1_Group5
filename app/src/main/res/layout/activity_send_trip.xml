@@ -11,7 +11,7 @@
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="168dp"
-        android:text="Select a Contact From the Dropdown List Below"
+        android:text="@string/selectContactStr"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Send!"
+        android:text="@string/sendButtonStr"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contactSpinner" />
@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Go Back!"
+        android:text="@string/goBackButtonStr"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sendTripToContactButton" />
