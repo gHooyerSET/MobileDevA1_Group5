@@ -10,7 +10,9 @@ package com.example.tripplanner_a1_prog3150;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -35,12 +37,13 @@ import java.nio.charset.StandardCharsets;
  */
 public class ConfirmationActivity extends MenuActivity {
 
+
     //Create variables
     private TextView confirmationOriginTextView;
     private TextView confirmationDestinationTextView;
     private TextView confirmationTotalCostTextView;
     private Button newTripButton;
-    private Button createReceiptButton;
+    private Button sendTripButton;
     private Trip trip;
 
     @Override
@@ -53,6 +56,7 @@ public class ConfirmationActivity extends MenuActivity {
         confirmationDestinationTextView = findViewById(R.id.confirmationDestinationTextView);
         confirmationTotalCostTextView = findViewById(R.id.confirmationTripCostTextView);
         newTripButton = findViewById(R.id.newTripButton);
+        sendTripButton = findViewById(R.id.sendTripButton);
         //Set textview text
         confirmationTotalCostTextView.setText("$" + String.format("%.02f",trip.getTotalCost()));
         confirmationOriginTextView.setText(trip.getOrigin());
@@ -86,6 +90,13 @@ public class ConfirmationActivity extends MenuActivity {
              *   AVAILABILITY : https://stackoverflow.com/questions/2139134/how-to-send-an-object-from-one-android-activity-to-another-using-intents
              */
             ConfirmationActivity.this.startActivity(nextScreenIntent);
+        });
+
+        sendTripButton.setOnClickListener(view -> {
+           Intent nextScreenIntent = new Intent( ConfirmationActivity.this, SendTripActivity.class);
+           //Go to next page
+           nextScreenIntent.putExtra("trip", trip);
+           ConfirmationActivity.this.startActivity(nextScreenIntent);
         });
     }
 }
