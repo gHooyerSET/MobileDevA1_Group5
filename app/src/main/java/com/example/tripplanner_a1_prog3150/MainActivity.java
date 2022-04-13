@@ -11,6 +11,9 @@ package com.example.tripplanner_a1_prog3150;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.RemoteViews;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -121,7 +125,6 @@ public class MainActivity extends MenuActivity {
                 //And set the trip's origin and destination members to the selected values
                 trip.setOrigin(originSpinner.getSelectedItem().toString());
                 trip.setDestination(destinationSpinner.getSelectedItem().toString());
-
             }
         }
         //Otherwise, increment the hideToastHack value
