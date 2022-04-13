@@ -31,6 +31,16 @@
         app:layout_constraintTop_toBottomOf="@+id/pageTitleTextView" />
 
     <Button
+        android:id="@+id/refreshContactListButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/refreshContactButtonStr"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contactSpinner" />
+
+    <Button
         android:id="@+id/sendTripToContactButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,7 +48,7 @@
         android:text="@string/sendButtonStr"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contactSpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/refreshContactListButton" />
 
     <Button
         android:id="@+id/goBackButton"

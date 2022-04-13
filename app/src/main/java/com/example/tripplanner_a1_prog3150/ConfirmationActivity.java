@@ -30,6 +30,7 @@ import java.nio.charset.StandardCharsets;
 
 public class ConfirmationActivity extends MenuActivity {
 
+
     //Create variables
     private TextView confirmationOriginTextView;
     private TextView confirmationDestinationTextView;
@@ -38,7 +39,6 @@ public class ConfirmationActivity extends MenuActivity {
     private Button createReceiptButton;
     private Button sendTripButton;
     private Trip trip;
-    private AlertDialog permissionDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,31 +78,9 @@ public class ConfirmationActivity extends MenuActivity {
         });
 
         sendTripButton.setOnClickListener(view -> {
-            //Get permission to use contacts
-            permissionDialog = new AlertDialog.Builder(ConfirmationActivity.this)
-                    .setMessage("Allow SET Trip Planner to access your contacts?")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int which) {
-                            Intent nextScreenIntent = new Intent( ConfirmationActivity.this, SendTripActivity.class);
-                            //Go to next page
-                            ConfirmationActivity.this.startActivity(nextScreenIntent);
-                        }
-                    })
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int which) {
-                            //Do nothing
-                        }
-                    })
-                    .setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            //Do nothing
-                        }
-                    })
-                    .show();
-
+           Intent nextScreenIntent = new Intent( ConfirmationActivity.this, SendTripActivity.class);
+           //Go to next page
+           ConfirmationActivity.this.startActivity(nextScreenIntent);
         });
 
         createReceiptButton.setOnClickListener(view -> {

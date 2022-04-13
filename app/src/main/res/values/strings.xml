@@ -28,6 +28,7 @@
     <string name="selectContactStr">Select a Contact From the Dropdown List Below</string>
     <string name="sendButtonStr">Send</string>
     <string name="goBackButtonStr">Go Back</string>
+    <string name="refreshContactButtonStr">Refresh Contact List</string>
     <string name="main">Main</string>
     <string name="flight">Flight</string>
     <string name="hotel">Hotel</string>
