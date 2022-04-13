@@ -55,4 +55,9 @@
         <item>500.00</item>
     </string-array>
     <string name="createReceiptStr">Create Receipt!</string>
+    <string name="view_map">View Destination Attraction Map</string>
+    <string name="hotel_info">Hotel Info</string>
+    <string name="current_trip">Current Trip</string>
+    <string name="nights">Nights</string>
+    <string name="destination">Destination</string>
 </resources>

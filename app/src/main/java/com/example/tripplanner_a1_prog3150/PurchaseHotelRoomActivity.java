@@ -9,6 +9,9 @@ package com.example.tripplanner_a1_prog3150;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,6 +22,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ListView;
+import android.widget.RemoteViews;
 import android.widget.Spinner;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -54,6 +58,7 @@ public class PurchaseHotelRoomActivity extends MenuActivity {
     private CheckBox champagneCheckBox;
     private CheckBox jacuzziCheckBox;
     private Button viewHotelButton;
+    private Button viewMapButton;
     private String hotelUrl;
     ArrayList<String> amenities = new ArrayList();
     // Trip
@@ -79,6 +84,7 @@ public class PurchaseHotelRoomActivity extends MenuActivity {
         champagneCheckBox = findViewById(R.id.champagneCheckBox);
         jacuzziCheckBox = findViewById(R.id.jacuzziCheckBox);
         viewHotelButton = findViewById(R.id.viewHotelButton);
+        viewMapButton = findViewById(R.id.viewMapButton);
         ArrayAdapter<String> amenitiesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, amenities);
         ListView amenitiesListView = findViewById(R.id.hotelCostListView);
         amenitiesListView.setAdapter(amenitiesAdapter);
@@ -205,7 +211,21 @@ public class PurchaseHotelRoomActivity extends MenuActivity {
             }
         });
 
+
+
         //Button Listeners
+
+        // Map of destination button
+        viewMapButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                // Ref https://developers.google.com/maps/documentation/urls/android-intents
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + Uri.encode(trip.getDestination().toString()) + " Attractions");
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+            }
+        });
 
         // Hotel Web View button
         viewHotelButton.setOnClickListener(new View.OnClickListener(){

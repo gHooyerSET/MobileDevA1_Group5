@@ -2,9 +2,13 @@ package com.example.tripplanner_a1_prog3150;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.RemoteViews;
 import android.widget.TextView;
 
 /*  -- Class Header Comment
@@ -74,6 +78,18 @@ public class ReviewTripActivity extends MenuActivity {
              *   VERSION : N/A
              *   AVAILABILITY : https://stackoverflow.com/questions/2139134/how-to-send-an-object-from-one-android-activity-to-another-using-intents
              */
+
+            // Update widget with destination night count
+            // Ref: https://stackoverflow.com/a/4412949
+            Context context = this;
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+            RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget);
+            ComponentName widget = new ComponentName(context, Widget.class);
+            remoteViews.setTextViewText(R.id.nightsWidgetTextView, String.valueOf(trip.getNights()));
+            appWidgetManager.updateAppWidget(widget, remoteViews);
+            remoteViews.setTextViewText(R.id.destWidgetTextView, trip.getDestination());
+            appWidgetManager.updateAppWidget(widget, remoteViews);
+
             nextScreenIntent.putExtra("trip", trip);
             ReviewTripActivity.this.startActivity(nextScreenIntent);
         });
